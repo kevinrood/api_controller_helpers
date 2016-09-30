@@ -11,15 +11,19 @@ module ApiControllerHelpers
     end
 
     def render_record(record)
-      render json: {self.class.record_json_key => record}
+      render json: wrap_result(record)
     end
 
     def render_errors(errors)
-      render json: {errors: errors}, status: :conflict
+      render json: wrap_result(errors: errors), status: :conflict
     end
 
     def render_collection(collection)
-      render json: {self.class.collection_json_key => collection}
+      render json: wrap_result(collection)
+    end
+
+    def wrap_result(result)
+      {data: result}
     end
 
     def self.included(base)
@@ -27,13 +31,7 @@ module ApiControllerHelpers
     end
 
     module ClassMethods
-      def record_json_key
-        @record_json_key ||= name.chomp('Controller').underscore.singularize
-      end
-
-      def collection_json_key
-        @collection_json_key ||= name.chomp('Controller').underscore
-      end
+      # add class methods here
     end
 
   end
