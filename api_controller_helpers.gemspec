@@ -12,5 +12,5 @@ Gem::Specification.new do |gem|
   gem.homepage    = 'https://github.com/kevinrood/api_controller_helpers'
   gem.license     = 'Apache-2.0'
 
-  gem.add_runtime_dependency('rails', '5.0.0.beta1')
+  gem.add_runtime_dependency('rails', '~> 5.0')
 end
